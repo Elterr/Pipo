@@ -1,1 +1,62 @@
+import java.util.ArrayList;
+import java.util.Random;
 
+class Point {
+public float x;
+public float y;
+
+public Point(float x, float y) {
+this.x = x;
+this.y = y;
+}
+public void printCoordinates(Point point) {
+System.out.printf("x: " + this.x +" y: " + this.y);
+System.out.println();
+}
+}
+class Square {
+public Point point;
+public float SideLength;
+
+public Square(Point point, float SideLength){
+this.point = point;
+this.SideLength = SideLength;
+
+if(SideLength<=0)
+{
+System.out.println("TO MI NIE WYGLĄDA NA KWADRAT");
+}
+else{
+Point One = new Point(point.x,point.y);
+One.printCoordinates(One);
+Point Two = new Point(point.x,point.y+SideLength);
+Two.printCoordinates(Two);
+Point Three = new Point(point.x+SideLength,point.y+SideLength);
+Three.printCoordinates(Three);
+Point Four = new Point(point.x+SideLength,point.y);
+Four.printCoordinates(Four);
+}
+}
+}
+public class Main {
+static int squares_count = 2;
+public static void main(String[] args) {
+
+  ArrayList<Square> Squares = new ArrayList<Square>();
+for (int i = 0; i < squares_count; i++) {
+System.out.println("Kwadrat numer " + (i + 1));
+float inputX = getRandomNumber();
+float inputY = getRandomNumber();
+float inputSideLength = getRandomNumber();
+
+Point point = new Point(inputX, inputY);
+Square square = new Square(point, inputSideLength);
+Squares.add(square);
+System.out.println();
+}
+}
+public static float getRandomNumber() {
+Random rand = new Random();
+return rand.nextInt(10) - 4;
+}
+}
